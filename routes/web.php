@@ -14,5 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/item/{tag}','ItemController@item_by_tag');
 
-Route::get('/admin','ItemController@index'); 
+Route::get('/admin','ItemController@index');
+
+Route::get('/admin/add_item','admin\ItemController@add_item');
+Route::post('/admin/add_item','admin\ItemController@add_item_post');
+
+Route::get('/admin/add_tag','admin\ItemController@add_tag');
+Route::post('/admin/add_tag','admin\ItemController@add_tag_post');
