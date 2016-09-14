@@ -22,7 +22,8 @@ class ItemController extends Controller
         return view('index',compact('items', 'tags'));
     }
     
-    function item_info() {
-        
+    function item_info($id) {
+        $item = Item::where('id', $id)->get()->first();
+        return view('item',compact('item'));
     }
 }

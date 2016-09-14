@@ -12,11 +12,28 @@
 <div id="wrapper" class="viewer">
     <div class="item_list">
         @foreach($items as $item)
-        <ul>
-            <img>
-            <h3>{{ $item->item_name }}</h3>
-            <p>简介：{{ $item->item_description }}</p>
-        </ul>
+        <li>
+            <div class="list-item">
+            <div class="p">
+                <a href="/item/{{ $item->id }}" title="">
+                    <img class="p-pic" src="//img.alicdn.com/imgextra/i2/148880247574559532/TB2JPxvspXXXXbiXXXXXXXXXXXX_!!0-saturn_solar.jpg_210x210.jpg" style="visibility: visible;">
+                    <span class="flag c-icon-p4p"></span>
+                </a>
+                </div>
+                <div class="d">
+                    <a href="/item/{{ $item->id }}" title="">
+                        <h3 class="d-title">{{ $item->item_name }}</h3>
+                    </a>
+                    <p class="d-price"><em class="h"><span class="price-icon">¥</span><span class="font-num">100</span></em><del></del></p>
+                    <div class="d-main">
+                        <p class="d-freight">运费10.00</p>
+                        <p class="d-num"><span class="font-num">118</span>人付款</p>
+                        <p class="d-area">上海</p>
+                    </div>
+                </div>
+            </div>
+            <div class="icons-group"></div>
+        </li>
         @endforeach
     </div>
     <div class="hovertreebottom">
@@ -29,7 +46,7 @@
                     <dl>
                         <dd>
                             @foreach($tag['value'] as $t)
-                            <a href="/item/{{ $t->id }}"><span>{{ $t->name }}</span></a>
+                            <a href="/tag/{{ $t->id }}"><span>{{ $t->name }}</span></a>
                             @endforeach
                         </dd>
                     </dl>
@@ -38,8 +55,6 @@
         </ul>
         </div>
     </nav>
-    <div id="hovertreebottom_masklayer" class="masklayer_div on">&nbsp;</div>
-    </div>
     <div id="page-content-wrapper" class="">
         <div class="page-content">
             <div class="container" id="J_list_Container">

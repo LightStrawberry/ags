@@ -14,12 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/item/{tag}','ItemController@item_by_tag');
+Route::get('/tag/{tag}','ItemController@item_by_tag');
+Route::get('/item/{id}','ItemController@item_info');
 
 Route::get('/admin','ItemController@index');
 
 Route::get('/admin/add_item','admin\ItemController@add_item');
 Route::post('/admin/add_item','admin\ItemController@add_item_post');
+Route::post('/admin/edit_item/{id}','admin\ItemController@edit_item');
+Route::post('/admin/edit_item/{id}','admin\ItemController@edit_item_post');
+Route::post('/admin/add_item_image/{id}','admin\ItemController@add_item_image');
 
 Route::get('/admin/add_tag','admin\ItemController@add_tag');
 Route::post('/admin/add_tag','admin\ItemController@add_tag_post');
