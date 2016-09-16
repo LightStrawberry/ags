@@ -11,19 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/tag/{tag}','ItemController@item_by_tag');
-Route::get('/item/{id}','ItemController@item_info');
+Route::get('/tag/{tag}','ShopController@shop_by_tag');
+Route::get('/shop/{id}','ShopController@shop_info');
 
-Route::get('/admin','ItemController@index');
+Route::get('/','ShopController@index');
+Route::get('/admin','admin\ShopController@index');
 
-Route::get('/admin/add_item','admin\ItemController@add_item');
-Route::post('/admin/add_item','admin\ItemController@add_item_post');
-Route::post('/admin/edit_item/{id}','admin\ItemController@edit_item');
-Route::post('/admin/edit_item/{id}','admin\ItemController@edit_item_post');
-Route::post('/admin/add_item_image/{id}','admin\ItemController@add_item_image');
+Route::get('/admin/add_shop','admin\ShopController@add_shop');
+Route::post('/admin/add_shop','admin\ShopController@add_shop_post');
+Route::get('/admin/edit_shop/{id}','admin\ShopController@edit_shop');
+Route::post('/admin/edit_shop/{id}','admin\ShopController@edit_shop_post');
+Route::get('/admin/add_shop_image/{id}','admin\ShopController@add_shop_image');
+Route::post('/admin/add_shop_image/{id}','admin\ShopController@add_shop_image_post');
+Route::get('/admin/del_shop/{id}','admin\ShopController@del_shop');
 
-Route::get('/admin/add_tag','admin\ItemController@add_tag');
-Route::post('/admin/add_tag','admin\ItemController@add_tag_post');
+Route::get('/admin/add_tag','admin\ShopController@add_tag');
+Route::post('/admin/add_tag','admin\ShopController@add_tag_post');

@@ -1,0 +1,42 @@
+
+.shop-list {
+    list-style-type:none;
+    width: 100%;
+    float: left;
+    margin: auto;
+    display: inline;
+    padding: 0;
+}
+
+.shop-info {
+    width: 55%;
+    margin: auto;
+    float: left;
+}
+
+.shop-name {
+    height: 34px;
+    width: 200px;
+}
+
+.shop-add-img {
+    width: 15%;
+    margin: auto;
+    float: left;
+}
+
+.shop-edit {
+    width: 15%;
+    margin: auto;
+    float: left;
+}
+
+.shop-del {
+    width: 15%;
+    margin: auto;
+    float: left;
+}
+
+.admin-shop-add-page {
+    text-align: center;
+}

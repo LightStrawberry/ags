@@ -1,3 +1,4 @@
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <form action="/admin/add_tag" method="post">
     <p>请选择大分类：</p>
     <select name="type">

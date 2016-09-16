@@ -13,15 +13,16 @@ class CreateItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('item_name');
+            $table->string('shop_name');
             $table->integer('type');
             $table->string('tag')->nullable();
-            $table->string('item_image_url')->nullable();
-            $table->string('item_description')->nullable();
-            $table->string('item_address')->nullable();
-            $table->string('shop_name')->nullable();
+            $table->string('shop_image_url')->nullable();
+            $table->string('shop_description')->nullable();
+            $table->string('shop_address')->nullable();
+            $table->string('shop_phone')->nullable();
+            $table->string('shop_wechat')->nullable();
             $table->timestamps();
         });
     }
