@@ -1,9 +1,9 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 {!!Html::style('css/add-shop.css')!!}
 
-<form action="/admin/edit_shop/{{ $shop->id }}" method="post" enctype="multipart/form-data">
-    商家名字:<input type="text" name="shop_name" value="{{ $shop->shop_name }}"><br>
-    商家简介:<textarea name="shop_description" cols="50" rows="5">{{ $shop->shop_description }}</textarea><br>
+<form action="/admin/edit_shop/<?php if(isset($shop)) {echo $shop->id; } ?>" method="post" enctype="multipart/form-data">
+    商家名字:<input type="text" name="shop_name" value="<?php if(isset($shop)) {echo $shop->shop_name;} ?>"><br>
+    商家简介:<textarea name="shop_description" cols="50" rows="5"><?php if(isset($shop)) {echo $shop->shop_description;} ?></textarea><br>
     
     
     产品分类:<input type="radio" name="type" value="1" <?php if(isset($shop->type) and $shop->type == 1) {echo 'checked="checked"';} ?>>肉类
@@ -17,9 +17,9 @@
     @endforeach
     <br>
     
-    商家地址:<input type="text" name="shop_address" value="{{ $shop->shop_address }}"><br>
-    联系方式:<input type="text" name="shop_phone" value="{{ $shop->shop_phone }}"><br>
-    微信号:<input type="text" name="shop_wechat" value="{{ $shop->shop_wechat }}"><br>
+    商家地址:<input type="text" name="shop_address" value="<?php if(isset($shop)) {echo $shop->shop_address; } ?>"><br>
+    联系方式:<input type="text" name="shop_phone" value="<?php if(isset($shop)) {echo $shop->shop_phone; } ?>"><br>
+    微信号:<input type="text" name="shop_wechat" value="<?php if(isset($shop)) {echo $shop->shop_whchat; } ?>"><br>
     
     添加图片:
     <input name="file"  type="file" accept="image/*"/>

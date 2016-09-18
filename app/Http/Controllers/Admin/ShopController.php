@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-use Qiniu\Auth;
+use Qiniu\Auth as QiniuAuth;
 use Qiniu\Storage\UploadManager;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Shop;
 use App\Tag;
 use Input;
@@ -16,8 +17,13 @@ use Response;
 class ShopController extends Controller
 {
     function index() {
-        $shops = Shop::all();
-        return view('admin/index',compact('shops'));
+        $user = Auth::user();
+        if($user) {
+            $shops = Shop::all();
+            return view('admin/index',compact('shops'));
+        } else {
+            return redirect('/');
+        }
     }
     
     function add_shop() {
@@ -99,7 +105,7 @@ class ShopController extends Controller
         $accessKey = 'PQ40GWVaMPa9BNN2C92JtMyOUrjP1MMU53GJxzBD';
         $secretKey = 'Jh5xNrgdynLsGsrTDP-3D6IZj1oam1PX2xn5bEHR';
         $bucket = 'h-ags';
-        $auth = new Auth($accessKey, $secretKey);
+        $auth = new QiniuAuth($accessKey, $secretKey);
         $uptoken = $auth->uploadToken($bucket);
         $img_key = md5(time());
         $filePath = $img_path;
