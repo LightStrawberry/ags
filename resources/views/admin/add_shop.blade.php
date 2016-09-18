@@ -1,19 +1,19 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 {!!Html::style('css/add-shop.css')!!}
 
-<form action="/admin/edit_shop" method="post" enctype="multipart/form-data">
+<form action="/admin/edit_shop/{{ $shop->id }}" method="post" enctype="multipart/form-data">
     商家名字:<input type="text" name="shop_name" value="{{ $shop->shop_name }}"><br>
     商家简介:<textarea name="shop_description" cols="50" rows="5">{{ $shop->shop_description }}</textarea><br>
     
     
-    产品分类:<input type="radio" name="type" value="1">肉类
-            <input type="radio" name="type" value="2">冻品
-            <input type="radio" name="type" value="3">蔬菜
-            <input type="radio" name="type" value="4">水产<br>
+    产品分类:<input type="radio" name="type" value="1" <?php if(isset($shop->type) and $shop->type == 1) {echo 'checked="checked"';} ?>>肉类
+            <input type="radio" name="type" value="2" <?php if(isset($shop->type) and $shop->type == 2) {echo 'checked="checked"';} ?>>冻品
+            <input type="radio" name="type" value="3" <?php if(isset($shop->type) and $shop->type == 3) {echo 'checked="checked"';} ?>>蔬菜
+            <input type="radio" name="type" value="4" <?php if(isset($shop->type) and $shop->type == 4) {echo 'checked="checked"';} ?>>水产<br>
     
     产品细类:
     @foreach($tags as $tag)
-        <input type="radio" name="tag" value="{{ $tag->id }}">{{ $tag->name }}
+        <input type="radio" name="tag" value="{{ $tag->id }}" <?php if(isset($shop->tag) and $shop->tag == $tag->id) {echo 'checked="checked"';} ?>>{{ $tag->name }}
     @endforeach
     <br>
     

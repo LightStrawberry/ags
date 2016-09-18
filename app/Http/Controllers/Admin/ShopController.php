@@ -59,12 +59,12 @@ class ShopController extends Controller
     }
     
     function edit_shop_post(Request $request, $id = NULL) {
-        var_dump($request->input());
-        die();
         if (isset($id)) {
-            Item::updateOrCreate(['id' => $id], $request->input());
+            Shop::updateOrCreate(['id' => $id], $request->input());
+            return redirect('/admin');
         } else {
-            Item::create($request->input());
+            $shop = Shop::create($request->input());
+            self::imgUpload($shop->id);
             return redirect('/admin');
         }
     }

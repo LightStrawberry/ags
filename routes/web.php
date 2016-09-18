@@ -27,3 +27,7 @@ Route::get('/admin/del_shop/{id}','admin\ShopController@del_shop');
 
 Route::get('/admin/add_tag','admin\ShopController@add_tag');
 Route::post('/admin/add_tag','admin\ShopController@add_tag_post');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
