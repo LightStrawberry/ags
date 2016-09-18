@@ -1,7 +1,7 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 {!!Html::style('css/add-shop.css')!!}
 
-<form action="/admin/edit_shop/<?php if(isset($shop)) {echo $shop->id; } ?>" method="post" enctype="multipart/form-data">
+<form action="/admin/<?php if(isset($shop)) {echo 'edit_shop/'.$shop->id; } else {echo 'add_shop'; }?>" method="post" enctype="multipart/form-data">
     商家名字:<input type="text" name="shop_name" value="<?php if(isset($shop)) {echo $shop->shop_name;} ?>"><br>
     商家简介:<textarea name="shop_description" cols="50" rows="5"><?php if(isset($shop)) {echo $shop->shop_description;} ?></textarea><br>
     
@@ -22,7 +22,7 @@
     微信号:<input type="text" name="shop_wechat" value="<?php if(isset($shop)) {echo $shop->shop_whchat; } ?>"><br>
     
     添加图片:
-    <input name="file"  type="file" accept="image/*"/>
+    <input id="img_input" name="file"  type="file" accept="image/*"/>
     <!-- <input id="img_input" type="file" name="shop_image_url" accept="image/*"/>
     <label for="img_input" id="img_label">选择文件<i class="fa fa-plus fa-lg"></i></label> -->
     

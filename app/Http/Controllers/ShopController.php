@@ -11,13 +11,13 @@ use App\Tag;
 class ShopController extends Controller
 {
     function index() {
-        $shops = Shop::all();
+        $shops = Shop::orderBy('updated_at', 'desc')->get();
         $tags = Tag::type_tag();
         return view('index',compact('shops', 'tags'));
     }
     
     function shop_by_tag($tag) {
-        $shops = Shop::where('tag', $tag)->orderBy('updated_at', 'desc')->take(10)->get();
+        $shops = Shop::where('tag', $tag)->orderBy('updated_at', 'desc')->get();
         $tags = Tag::type_tag();
         return view('index',compact('shops', 'tags'));
     }

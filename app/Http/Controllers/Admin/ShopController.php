@@ -19,7 +19,7 @@ class ShopController extends Controller
     function index() {
         $user = Auth::user();
         if($user) {
-            $shops = Shop::all();
+            $shops = Shop::orderBy('updated_at', 'desc')->get();
             return view('admin/index',compact('shops'));
         } else {
             return redirect('/');
@@ -55,7 +55,6 @@ class ShopController extends Controller
         }
 
         $shop->save();
-        
     }
     
     function edit_shop($id) {
@@ -70,7 +69,9 @@ class ShopController extends Controller
             return redirect('/admin');
         } else {
             $shop = Shop::create($request->input());
-            self::imgUpload($shop->id);
+            if(isset($_FILES['file']['tmp_name'])) {
+                self::imgUpload($shop->id);
+            }
             return redirect('/admin');
         }
     }
