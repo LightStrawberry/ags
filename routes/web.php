@@ -25,8 +25,10 @@ Route::get('/admin/add_shop_image/{id}','Admin\ShopController@add_shop_image');
 Route::post('/admin/add_shop_image/{id}','Admin\ShopController@add_shop_image_post');
 Route::get('/admin/del_shop/{id}','Admin\ShopController@del_shop');
 
+Route::get('/admin/tag','Admin\ShopController@tag');
 Route::get('/admin/add_tag','Admin\ShopController@add_tag');
 Route::post('/admin/add_tag','Admin\ShopController@add_tag_post');
+Route::get('/admin/del_tag/{id}','Admin\ShopController@del_tag');
 
 Auth::routes();
 

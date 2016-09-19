@@ -1,0 +1,15 @@
+li {
+    min-height: 50px;
+    padding: 12px 6px;
+    border-bottom: 1px solid #dbdbdb;
+    position: relative;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+}
+
+.tag-del {
+    float: right;
+}

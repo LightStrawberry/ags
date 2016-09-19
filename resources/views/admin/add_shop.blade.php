@@ -1,7 +1,8 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 {!!Html::style('css/add-shop.css')!!}
+{!!Html::style('css/bootstrap.css')!!}
 
-<form action="/admin/<?php if(isset($shop)) {echo 'edit_shop/'.$shop->id; } else {echo 'add_shop'; }?>" method="post" enctype="multipart/form-data">
+<form id="shop" action="/admin/<?php if(isset($shop)) {echo 'edit_shop/'.$shop->id; } else {echo 'add_shop'; }?>" method="post" enctype="multipart/form-data">
     商家名字:<input type="text" name="shop_name" value="<?php if(isset($shop)) {echo $shop->shop_name;} ?>"><br>
     商家简介:<textarea name="shop_description" cols="50" rows="5"><?php if(isset($shop)) {echo $shop->shop_description;} ?></textarea><br>
     
@@ -26,6 +27,6 @@
     <!-- <input id="img_input" type="file" name="shop_image_url" accept="image/*"/>
     <label for="img_input" id="img_label">选择文件<i class="fa fa-plus fa-lg"></i></label> -->
     
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="submit">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
+    <button class="btn btn-default" type="submit" form="shop" value="Submit">提交</button>
 </form>

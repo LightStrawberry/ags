@@ -93,13 +93,24 @@ class ShopController extends Controller
         return redirect('/admin');
     }
     
+    function tag() {
+        $tags = Tag::type_tag();
+        return view('admin/tag', compact('tags'));
+    }
+    
     function add_tag() {
         return view('admin/add_tag');
     }
     
     function add_tag_post(Request $request) {
         Tag::create($request->input());
-        return redirect('/admin');
+        return redirect('/admin/tag');
+    }
+    
+    function del_tag($id) {
+        $tag = Tag::find($id);
+        $tag->delete();
+        return redirect('/admin/tag');
     }
     
     function qiniu_upload($img_path) {

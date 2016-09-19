@@ -3,7 +3,7 @@
 {!!Html::style('css/admin.css')!!}
 <div class="shops-wrapper row">
     <a class="btn btn-default col-48 shop-add-btn" href="admin/add_shop">添加商店</a>
-    <a class="btn btn-default col-48 shop-add-btn" href="admin/add_tag">添加商店分类</a>
+    <a class="btn btn-default col-48 shop-add-btn" href="admin/tag">商店分类</a>
     <ul class="shop-list">
         @foreach($shops as $shop)
         <li>
