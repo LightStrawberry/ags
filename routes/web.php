@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/tag/{tag}','ShopController@shop_by_tag');
+Route::get('/tag/{tag}/{category?}','ShopController@shop_by_tag');
 Route::get('/shop/{id}','ShopController@shop_info');
 
 Route::get('/','ShopController@index');

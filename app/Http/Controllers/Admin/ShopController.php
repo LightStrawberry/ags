@@ -62,7 +62,8 @@ class ShopController extends Controller
     function edit_shop($id) {
         $shop = Shop::find($id);
         $tags = Tag::all();
-        return view('admin/add_shop',compact('shop', 'tags'));
+        $categories = Category::all();
+        return view('admin/add_shop',compact('shop', 'tags', 'categories'));
     }
     
     function edit_shop_post(Request $request, $id = NULL) {
