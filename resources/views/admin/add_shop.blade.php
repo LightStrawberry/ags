@@ -7,10 +7,10 @@
     商家简介:<textarea name="shop_description" cols="50" rows="5"><?php if(isset($shop)) {echo $shop->shop_description;} ?></textarea><br>
     
     
-    产品分类:<input type="radio" name="type" value="1" <?php if(isset($shop->type) and $shop->type == 1) {echo 'checked="checked"';} ?>>肉类
-            <input type="radio" name="type" value="2" <?php if(isset($shop->type) and $shop->type == 2) {echo 'checked="checked"';} ?>>冻品
-            <input type="radio" name="type" value="3" <?php if(isset($shop->type) and $shop->type == 3) {echo 'checked="checked"';} ?>>蔬菜
-            <input type="radio" name="type" value="4" <?php if(isset($shop->type) and $shop->type == 4) {echo 'checked="checked"';} ?>>水产<br>
+    产品分类:<input type="radio" name="type" value="1" <?php if(isset($shop->type) and $shop->type == 1) {echo 'checked="checked"';} ?>>生鲜肉类
+            <input type="radio" name="type" value="2" <?php if(isset($shop->type) and $shop->type == 2) {echo 'checked="checked"';} ?>>海鲜水产
+            <input type="radio" name="type" value="3" <?php if(isset($shop->type) and $shop->type == 3) {echo 'checked="checked"';} ?>>熟食调理
+            <input type="radio" name="type" value="4" <?php if(isset($shop->type) and $shop->type == 4) {echo 'checked="checked"';} ?>>粮油副食<br>
     
     产品大类:
     @foreach($tags as $tag)

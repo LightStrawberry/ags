@@ -13,9 +13,7 @@ use Route;
 class ShopController extends Controller
 {
     function index() {
-        $shops = Shop::orderBy('updated_at', 'desc')->get();
-        $tags = Tag::type_tag();
-        return view('index',compact('shops', 'tags'));
+        return redirect('/tag/5/');
     }
     
     function shop_by_tag($tag, $category=0) {
@@ -26,7 +24,6 @@ class ShopController extends Controller
         }
         $tags = Tag::type_tag();    
         $current_tag = Tag::find($tag);
-        $current_category = $category;
         // var_dump($current_tag->categories()->all());die();
         return view('index',compact('shops', 'tags', 'current_tag'));
     }

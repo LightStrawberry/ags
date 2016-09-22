@@ -17,6 +17,10 @@ use Response;
 
 class ShopController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     function index() {
         $user = Auth::user();
         if(1) {

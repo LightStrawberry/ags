@@ -30,7 +30,7 @@
             <span class="xeAppfonts icon-me"></span>
             <span class="tab-label">分类</span>
         </a>
-        <a class="tab-item external" ng-class="{active: index == '3'}" ui-sref="usercenter" href="#/userCenter">
+        <a class="tab-item external" href="/user">
             <span class="xeAppfonts icon-orders"></span>
             <span class="tab-label">个人中心</span>
         </a>
