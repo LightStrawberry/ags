@@ -41,39 +41,16 @@
         <div class="pos-list-con-list">
             <div class="pos-list-con">
                 <ul>
+                    @foreach($tags as $tag)
                     <li class="Collapsing current">
-                        <em class="">生鲜肉类</em>
+                        <em class="">{{ $tag['type'] }}</em>
                         <div class="coll_body">
-                            <a class="">猪肉类</a>
-                            <a class=" actived">牛肉</a>
-                            <a class="">羊肉</a>
-                            <a class="">禽肉</a>
-                            <a class="">蛋类</a>
+                            @foreach($tag['value'] as $t)
+                            <a class="">{{ $t->tag_name }}</a>
+                            @endforeach
                         </div>
                     </li>
-                    
-                    <li class="Collapsing">
-                        <em class="">海鲜鱼产</em>
-                        <div class="coll_body">
-                            <a class="">猪肉类</a>
-                            <a class="">牛肉</a>
-                            <a class="">羊肉</a>
-                            <a class="">禽肉</a>
-                            <a class="">蛋类</a>
-                        </div>
-                    </li>
-                    
-                    <li class="Collapsing">
-                        <em class="">熟食调理</em>
-                        <div class="coll_body">
-                            <a class="">猪肉类</a>
-                            <a class="">牛肉</a>
-                            <a class="">羊肉</a>
-                            <a class="">禽肉</a>
-                            <a class="">蛋类</a>
-                        </div>
-                    </li>
-                    
+                    @endforeach
                 </ul>
             </div>
             <div class="pos-list-right-con ">
@@ -94,7 +71,7 @@
                     </ul>
                 </div>
                 <div class="search-dropdown" ng-class="{'show': showFilter}">
-                    <!-- ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">全部</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">有货</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">预售</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">冻品</div><!-- end ngRepeat: filter in filters -->
+                    <div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">全部</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">有货</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">预售</div><!-- end ngRepeat: filter in filters --><div ng-class="{'active': filter === currentFilter}" ng-click="selectFilter(filter)" ng-repeat="filter in filters" ng-bind="filter" class="ng-binding ng-scope">冻品</div><!-- end ngRepeat: filter in filters -->
                 </div>
                 <div slider="" free-mode="true" slides-per-view="auto" target=".header-nav-list" class="header-nav-list swiper-container ng-isolate-scope swiper-container-horizontal swiper-container-free-mode">
                     <ul class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">

@@ -30,6 +30,10 @@ Route::get('/admin/add_tag','Admin\ShopController@add_tag');
 Route::post('/admin/add_tag','Admin\ShopController@add_tag_post');
 Route::get('/admin/del_tag/{id}','Admin\ShopController@del_tag');
 
+Route::get('/admin/add_category','Admin\ShopController@add_category');
+Route::post('/admin/add_category','Admin\ShopController@add_category_post');
+Route::get('/admin/del_category/{id}','Admin\ShopController@del_category');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

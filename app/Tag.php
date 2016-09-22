@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     protected $fillable = [
-        'name', 'type',
+        'tag_name', 'type',
     ];
     
     public static function type_tag() {
@@ -16,9 +16,14 @@ class Tag extends Model
         $tags3 = Tag::where('type', 3)->orderBy('created_at', 'desc')->take(10)->get();
         $tags4 = Tag::where('type', 4)->orderBy('created_at', 'desc')->take(10)->get();
         
-        $tags = [["type"=> "肉类", "value"=> $tags1], ["type"=> "冻品", "value"=> $tags2], 
-        ["type"=> "蔬菜", "value"=> $tags3], ["type"=> "水产", "value"=> $tags4], ];
+        $tags = [["type"=> "生鲜肉类", "value"=> $tags1], ["type"=> "海鲜水产", "value"=> $tags2], 
+        ["type"=> "熟食调理", "value"=> $tags3], ["type"=> "粮油副食", "value"=> $tags4], ];
         
         return $tags;
+    }
+    
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
     }
 }

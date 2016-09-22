@@ -13,7 +13,7 @@
                 <ul>
                     @foreach($tag['value'] as $t)
                     <li>
-                        <a href="/tag/{{ $t->id }}"><span>{{ $t->name }}</span></a>
+                        <a href="/tag/{{ $t->id }}"><span>{{ $t->tag_name }}</span></a>
                         <a class="btn btn-default tag-del" href="/admin/del_tag/{{ $t->id }}">删除</a>
                     </li>
                     @endforeach

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Shop;
 use App\Tag;
+use App\Category;
 use Input;
 use Response;
 
@@ -18,7 +19,7 @@ class ShopController extends Controller
 {
     function index() {
         $user = Auth::user();
-        if($user) {
+        if(1) {
             $shops = Shop::orderBy('updated_at', 'desc')->get();
             return view('admin/index',compact('shops'));
         } else {
@@ -28,7 +29,8 @@ class ShopController extends Controller
     
     function add_shop() {
         $tags = Tag::all();
-        return view('admin/add_shop',compact('tags'));
+        $categories = Category::all();
+        return view('admin/add_shop',compact('tags', 'categories'));
     }
     
     function add_shop_post(Request $request, $id = NULL) {
@@ -111,6 +113,16 @@ class ShopController extends Controller
         $tag = Tag::find($id);
         $tag->delete();
         return redirect('/admin/tag');
+    }
+    
+    function add_category() {
+        $tags = Tag::type_tag();
+        return view('admin/category', compact('tags'));
+    }
+    
+    function add_category_post(Request $request) {
+        Category::create($request->input());
+        return redirect('/admin');
     }
     
     function qiniu_upload($img_path) {

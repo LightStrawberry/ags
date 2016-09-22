@@ -7,7 +7,7 @@
         <option value="3">蔬菜</option>
         <option value="4">水产</option>
     </select>
-    <p>请输入小分类：</p><input type="text" name="name">
+    <p>请输入小分类：</p><input type="text" name="tag_name">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
     <input type="submit">
 </form>

@@ -17,7 +17,7 @@ class CreateItemTable extends Migration
             $table->increments('id');
             $table->string('shop_name');
             $table->integer('type');
-            $table->string('tag')->nullable();
+            $table->integer('tag')->nullable();
             $table->string('shop_image_url')->nullable();
             $table->string('shop_description')->nullable();
             $table->string('shop_address')->nullable();

@@ -12,9 +12,15 @@
             <input type="radio" name="type" value="3" <?php if(isset($shop->type) and $shop->type == 3) {echo 'checked="checked"';} ?>>蔬菜
             <input type="radio" name="type" value="4" <?php if(isset($shop->type) and $shop->type == 4) {echo 'checked="checked"';} ?>>水产<br>
     
-    产品细类:
+    产品大类:
     @foreach($tags as $tag)
-        <input type="radio" name="tag" value="{{ $tag->id }}" <?php if(isset($shop->tag) and $shop->tag == $tag->id) {echo 'checked="checked"';} ?>>{{ $tag->name }}
+        <input type="radio" name="tag" value="{{ $tag->id }}" <?php if(isset($shop->tag) and $shop->tag == $tag->id) {echo 'checked="checked"';} ?>>{{ $tag->tag_name }}
+    @endforeach
+    <br>
+    
+    产品细类:
+    @foreach($categories as $c)
+        <input type="radio" name="category" value="{{ $c->id }}" <?php if(isset($shop->category ) and $shop->category == $c->id) {echo 'checked="checked"';} ?>>{{ $c->category_name }}
     @endforeach
     <br>
     
