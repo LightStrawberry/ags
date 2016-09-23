@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Shop;
 use App\Tag;
+use App\Item;
 use App\Category;
 use Input;
 use Response;
@@ -47,20 +48,9 @@ class ShopController extends Controller
         }
     }
     
-    public function imgUpload($id) {
-        $url = "http://odi9y7rkk.bkt.clouddn.com/";
-        $callback = self::qiniu_upload($_FILES['file']['tmp_name']);
+    function shop_info($id) {
         $shop = Shop::find($id);
-
-        if($shop->shop_image_url == null) {
-            $shop->shop_image_url = json_encode([$url.$callback]);
-        } else {
-            $urls = json_decode($shop->shop_image_url);
-            $urls[] = $url.$callback;
-            $shop->shop_image_url = json_encode($urls);
-        }
-
-        $shop->save();
+        return view('admin/shop',compact('shop'));
     }
     
     function edit_shop($id) {
@@ -100,6 +90,24 @@ class ShopController extends Controller
         return redirect('/admin');
     }
     
+    function add_item($id) {
+        $shop = Shop::find($id);
+        return view('admin/add_item', compact('shop'));
+    }
+    
+    function add_item_post(Request $request) {
+        $item = Item::create($request->input());
+        self::imgUpload_item($item->id);
+        return redirect('/admin');
+    }
+    
+    function del_item($id) {
+        $item = Item::find($id);
+        $shop_id = $item->shop_id;
+        $item->delete();
+        return redirect('/admin/shop/'.$shop_id);
+    }
+    
     function tag() {
         $tags = Tag::type_tag();
         return view('admin/tag', compact('tags'));
@@ -128,6 +136,38 @@ class ShopController extends Controller
     function add_category_post(Request $request) {
         Category::create($request->input());
         return redirect('/admin');
+    }
+    
+    public function imgUpload($id) {
+        $url = "http://odi9y7rkk.bkt.clouddn.com/";
+        $callback = self::qiniu_upload($_FILES['file']['tmp_name']);
+        $shop = Shop::find($id);
+
+        if($shop->shop_image_url == null) {
+            $shop->shop_image_url = json_encode([$url.$callback]);
+        } else {
+            $urls = json_decode($shop->shop_image_url);
+            $urls[] = $url.$callback;
+            $shop->shop_image_url = json_encode($urls);
+        }
+
+        $shop->save();
+    }
+    
+    public function imgUpload_item($id) {
+        $url = "http://odi9y7rkk.bkt.clouddn.com/";
+        $callback = self::qiniu_upload($_FILES['file']['tmp_name']);
+        $item = Item::find($id);
+
+        if($item->item_image_url == null) {
+            $item->item_image_url = json_encode([$url.$callback]);
+        } else {
+            $urls = json_decode($item->item_image_url);
+            $urls[] = $url.$callback;
+            $item->item_image_url = json_encode($urls);
+        }
+
+        $item->save();
     }
     
     function qiniu_upload($img_path) {

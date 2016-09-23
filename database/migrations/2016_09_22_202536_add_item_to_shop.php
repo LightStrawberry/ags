@@ -16,7 +16,7 @@ class AddItemToShop extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');         
             $table->string('item_name')->nullable();
-            $table->string('shop_image_url')->nullable();
+            $table->string('item_image_url')->nullable();
             $table->string('item_description')->nullable();
             $table->integer('shop_id');
             $table->timestamps();
