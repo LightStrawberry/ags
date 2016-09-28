@@ -8,7 +8,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta content="telephone=no,email=no" name="format-detection">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <!-- <meta name="viewport" content="initial-scale=1.5, maximum-scale=1.5, minimum-scale=1.5, user-scalable=no"> -->
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
 </head>
 
@@ -105,24 +106,17 @@
 			</div>
 
 			<div class="user-order mt20">
-				<a ui-sref="fav" href="/fav">
+				<a ui-sref="fav" href="/myFavs">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-fav"></i>
 						我的收藏
 					</div>
 				</a>
 				
-				
 				<a ui-sref="auth.changepassword" href="/password/reset">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-pho"></i>
 						修改密码
-					</div>
-				</a>
-				<a ui-sref="bankCardList" href="#/bankCardList">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-myka"></i>
-						我的银行卡
 					</div>
 				</a>
 

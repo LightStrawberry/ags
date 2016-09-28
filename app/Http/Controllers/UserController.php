@@ -50,8 +50,13 @@ class UserController extends Controller
     // }
     function sendphone($phone) {
         $vcode = self::generate_random_code();
-        Redis::set($phone, $vcode);
-        return self::send($phone, $vcode);
+        if(Redis::get($phone)) {
+            return "已经发送";
+        } else {
+            Redis::set($phone, $vcode);
+            Redis::command('expire', [$phone, 60]);
+            return self::send($phone, $vcode);
+        }
     }
     
     function myFavs () {

@@ -17,17 +17,17 @@
     </head>
     <body style="font-size: 12px;" class="">
         <xe-confirm class="ng-isolate-scope"><!-- ngIf: show --></xe-confirm>
-        <!-- uiView:  --><div ui-view="" class="ng-scope"><section data-ng-controller="CategroyCtr" class="ng-scope">
+        <div ui-view="" class="ng-scope"><section data-ng-controller="CategroyCtr" class="ng-scope">
     <wx-title title="title" class="ng-isolate-scope"></wx-title>
-    <loading class="ng-isolate-scope"><!-- ngIf: show --></loading>
+    <loading class="ng-isolate-scope"></loading>
     <xe-tab index="1" cart-num="cartNum" class="ng-isolate-scope">
         <div class="fixbar" style="z-index: 99">
             <nav class="bar bar-tab">
-                <a class="tab-item external" ng-class="{active: index == '0'}" ui-sref="home" href="#/">
+                <!-- <a class="tab-item external" ng-class="{active: index == '0'}" ui-sref="home" href="#/">
                     <span class="xeAppfonts icon-home"></span>
                     <span class="tab-label">首页</span>
-                </a>
-                <a class="tab-item external active" ng-class="{active: index == '1'}" ui-sref="category" href="#/category">
+                </a> -->
+                <a class="tab-item external active" href="/category">
                     <span class="xeAppfonts icon-me"></span>
                     <span class="tab-label">分类</span>
                 </a>
