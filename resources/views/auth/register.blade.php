@@ -24,15 +24,29 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-4 control-label">手机号</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="phone" type="phone" class="form-control" name="phone" value="{{ old('phone') }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('phone'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="form-group{{ $errors->has('vcode') ? ' has-error' : '' }}">
+                            <label for="vcode" class="col-md-4 control-label">手机验证码</label>
+
+                            <div class="col-md-6">
+                                <input id="vcode" type="vcode" class="form-control" name="vcode" value="" placeholder="请输验证码" required>
+                                <span><button id="btn" type="button">免费发送验证码</button></span>
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -80,3 +94,20 @@
     </div>
 </div>
 @endsection
+
+{!!Html::script('js/jquery.js')!!}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btn').click(function(){
+            var phone = $.trim($('#phone').val());
+            var csrf = document.getElementsByName("_token")[0].value;
+            $.ajax({
+                type: "POST",
+                url: "/send/"+phone,
+                data: "_token="+csrf,
+                success: function(msg){
+                }
+            });
+        });
+    });
+</script>

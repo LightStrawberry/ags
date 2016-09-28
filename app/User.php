@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'phone', 'password',
     ];
 
     /**
@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public static function findByUsernameOrFail($name, $columns = array('*')) 
+    {
+        if ( ! is_null($user = static::wherename($name)->first($columns))) {
+            return $user;
+        }
+        //throw new ModelNotFoundException;
+    }
+    
+    public static function likeShops() {
+        // $favs = Favorite::where('user_id', 1)->get();
+        // $shop = Shop::
+        // var_dump(Favorite::where('user_id', 1)->get());
+        // die();
+        return Favorite::where('user_id', 1)->get();
+        
+    }
 }

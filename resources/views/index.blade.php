@@ -20,22 +20,24 @@
         <!-- uiView:  --><div ui-view="" class="ng-scope"><section data-ng-controller="CategroyCtr" class="ng-scope">
     <wx-title title="title" class="ng-isolate-scope"></wx-title>
     <loading class="ng-isolate-scope"><!-- ngIf: show --></loading>
-    <xe-tab index="1" cart-num="cartNum" class="ng-isolate-scope"><div class="fixbar" style="z-index: 99">
-    <nav class="bar bar-tab">
-        <a class="tab-item external" ng-class="{active: index == '0'}" ui-sref="home" href="#/">
-            <span class="xeAppfonts icon-home"></span>
-            <span class="tab-label">首页</span>
-        </a>
-        <a class="tab-item external active" ng-class="{active: index == '1'}" ui-sref="category" href="#/category">
-            <span class="xeAppfonts icon-me"></span>
-            <span class="tab-label">分类</span>
-        </a>
-        <a class="tab-item external" href="/user">
-            <span class="xeAppfonts icon-orders"></span>
-            <span class="tab-label">个人中心</span>
-        </a>
-    </nav>
-</div></xe-tab>
+    <xe-tab index="1" cart-num="cartNum" class="ng-isolate-scope">
+        <div class="fixbar" style="z-index: 99">
+            <nav class="bar bar-tab">
+                <a class="tab-item external" ng-class="{active: index == '0'}" ui-sref="home" href="#/">
+                    <span class="xeAppfonts icon-home"></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-item external active" ng-class="{active: index == '1'}" ui-sref="category" href="#/category">
+                    <span class="xeAppfonts icon-me"></span>
+                    <span class="tab-label">分类</span>
+                </a>
+                <a class="tab-item external" href="/user">
+                    <span class="xeAppfonts icon-orders"></span>
+                    <span class="tab-label">个人中心</span>
+                </a>
+            </nav>
+        </div>
+    </xe-tab>
     <div class="viewport">
         <div class="pos-list-con-list">
             <div class="pos-list-con">
@@ -82,26 +84,28 @@
                             @foreach($shops as $s)
                             <div class="ng-scope">
                                 <dl>
-                                    <a href="/shop/{{ $s->id }}">
-                                    <dt href="/shop/{{ $s->id }}">
+                                    <dt>
                                     <div class="pic-div">
-                                    <img src="{{ json_decode($s->shop_image_url)[0] }}">
+                                        <a href="/shop/{{ $s->id }}">
+                                            <img src="{{ json_decode($s->shop_image_url)[0] }}">
+                                        </a>
                                     </div>
                                     </dt>
                                     <dd>
                                         <p class="pro-name">
                                         <xe-html html-text="product.productName" >{{ $s->shop_name }}</xe-html>
                                         </p>
-                                        <p class="price ng-binding">
-                                            <i>¥<em ng-bind="product.price | price" class="ng-binding">57.00</em></i>/千克
+                                        <p class="price">
+                                            <i>¥<em class="ng-binding">57.00</em></i>/千克
                                         </p>
                                         <p class="pro-pri">
-                                            <i ng-bind="product.unitPrice" class="ng-binding">28.50元/斤</i>
+                                            <i class="ng-binding">28.50元/斤</i>
                                             <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
                                         </p>
-                                        <span class="gouwuche xeAppfonts ng-scope"></span>
+                                        <a href="/fav/{{ $s->id }}">
+                                            <span class="gouwuche xeAppfonts"></span>
+                                        </a>
                                     </dd>
-                                    </a>
                                 </dl>
                             </div>
                             @endforeach

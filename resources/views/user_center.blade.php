@@ -1,4 +1,4 @@
-{!!Html::style('css/index.css')!!}
+{!!Html::style('css/user.css')!!}
 
 <head>
 <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
@@ -8,21 +8,17 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta name="viewport" content="initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no">
 </head>
 
 <body style="font-size: 36px;" class="">
     <nav class="bar bar-tab">
-        <a class="tab-item external" ng-class="{active: index == '0'}" ui-sref="home" href="#/">
-            <span class="xeAppfonts icon-home"></span>
-            <span class="tab-label">首页</span>
-        </a>
-        <a class="tab-item external" ng-class="{active: index == '1'}" ui-sref="category" href="#/category">
+        <a class="tab-item external" href="/category">
             <span class="xeAppfonts icon-me"></span>
             <span class="tab-label">分类</span>
         </a>
-        <a class="tab-item external active" ng-class="{active: index == '3'}" ui-sref="usercenter" href="#/userCenter">
+        <a class="tab-item external active" href="/user">
             <span class="xeAppfonts icon-orders"></span>
             <span class="tab-label">个人中心</span>
         </a>
@@ -31,8 +27,12 @@
 	<div class="viewport">
 		<div class="user-con">
 				<div class="user-basic-new">
-					<div ui-sref="auth.login" class="new-user-nologin ng-scope" ng-if="!user" href="#/auth/login">
+					<div class="new-user-nologin" style="cursor: pointer;" onclick="window.location='/login';">
+                        <?php if(empty($user)):?>
 						<a>登录/注册</a>
+                        <?php else: ?>
+                        <a>{{ $user->name }}</a>
+                        <?php endif ?>
 					</div>
 				</div>
 				<div class="g-userInfo">
@@ -97,7 +97,6 @@
 							<a>
 								<p class="xeAppfonts user-sta-icon04"></p>
 								<p class="user-sta-text">已取消</p>
-								<!-- ngIf: info.cancelCount > 0 -->
 							</a>
 						</div>
 					</div>
@@ -106,27 +105,18 @@
 			</div>
 
 			<div class="user-order mt20">
-				<!-- <a ui-sref="auth.myCoupon">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-yhq"></i>
-						我的优惠券
-						<span ng-bind="info.totalCoupon + '张'" ng-if="info.totalCoupon > 0"></span>
-					</div>
-				</a> -->
-				<a ui-sref="fav" href="#/fav">
+				<a ui-sref="fav" href="/fav">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-fav"></i>
 						我的收藏
-						<!-- <span>查看全部订单</span> -->
 					</div>
 				</a>
 				
 				
-				<a ui-sref="auth.changepassword" href="#/auth/changepassword">
+				<a ui-sref="auth.changepassword" href="/password/reset">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-pho"></i>
 						修改密码
-						<!-- <span>查看全部订单</span> -->
 					</div>
 				</a>
 				<a ui-sref="bankCardList" href="#/bankCardList">
@@ -150,7 +140,6 @@
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-grmsg"></i>
 						个人信息
-						
 					</div>
 				</a>
 
@@ -158,7 +147,6 @@
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-adr"></i>
 						收货地址管理
-						<!-- <span>查看全部订单</span> -->
 					</div>
 				</a>
 			</div>
@@ -178,9 +166,6 @@
 					</div>
 				</a>
 
-				<!-- ngIf: info.managerPhone.length > 0 -->
-				
-
 				<a href="tel://400-662-6366">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-shz"></i>
@@ -189,33 +174,15 @@
 					</div>
 				</a>
 				
-				<a href="http://cy.xebest.com/release/wx_helpcenter.html">
+				<a href="">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-help"></i>
 						帮助说明
 					</div>
 				</a>
-
-			<!-- ngIf: user -->
-
 		</div>
 
 	</div>
-</section></div>
-
-        
-            <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-            <script src="../js/bundle-v0.8.2.js?1472117810028"></script>
-             
-            <script>
-                var _hmt = _hmt || [];
-                (function() {
-                var hm = document.createElement("script");
-                hm.src = "//hm.baidu.com/hm.js?edb835e7726923171b465d2cf4629430";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-                })();
-            </script>
-           
-        
-    </body>
+</section>
+</div>
+</body>

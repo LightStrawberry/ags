@@ -32,6 +32,12 @@
     <div class="dz_right"><img src="/img/bd.png" width="70%" height="auto"></div>
 </div>
 
+@foreach($shop->items as $i)
+    @foreach(json_decode($i->item_image_url) as $img)
+    <li><div class="item-img"><a href=""><img class="img-view" src="{{ $img }}"></a></div></li>
+    @endforeach
+@endforeach
+
 {!!Html::script('js/jquery.js')!!}
 {!!Html::script('js/unslider.js')!!}
 <script>

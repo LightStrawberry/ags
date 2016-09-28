@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -47,11 +48,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        if($data['vcode'] == Redis::get($data['phone'])) {
+            return Validator::make($data, [
+                'name' => 'required|max:255',
+                //'email' => 'required|email|max:255|unique:users',
+                'vcode' => 'required',
+                'phone' => 'required|unique:users|regex:/^1[34578][0-9]{9}$/',
+                'password' => 'required|min:6|confirmed',
+            ]);
+        } else {
+            return redirect('register');
+        }
     }
 
     /**
@@ -64,7 +71,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }

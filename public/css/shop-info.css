@@ -148,3 +148,12 @@ a,img,button,input,textarea {
     height: 300px;
     width: 100%;
 }
+
+.item-img {
+    width: 50%;
+    float: left;
+}
+
+.img-view {
+    height: 200px;
+}

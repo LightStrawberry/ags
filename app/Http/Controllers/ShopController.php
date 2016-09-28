@@ -13,7 +13,8 @@ use Route;
 class ShopController extends Controller
 {
     function index() {
-        return redirect('/tag/5/');
+        $firstTag = Tag::all()->first()->id;
+        return redirect('/tag/'.$firstTag.'/');
     }
     
     function shop_by_tag($tag, $category=0) {

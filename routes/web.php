@@ -16,6 +16,7 @@ Route::get('/shop/{id}','ShopController@shop_info');
 Route::get('/user','UserController@user_center');
 
 Route::get('/','ShopController@index');
+Route::get('/category','ShopController@index');
 Route::get('/admin','Admin\ShopController@index');
 
 Route::get('/admin/shop/{id}','Admin\ShopController@shop_info');
@@ -40,8 +41,11 @@ Route::get('/admin/add_category','Admin\ShopController@add_category');
 Route::post('/admin/add_category','Admin\ShopController@add_category_post');
 Route::get('/admin/del_category/{id}','Admin\ShopController@del_category');
 
+Route::get('/myFavs','UserController@myFavs');
+Route::get('/fav/{id}','UserController@likeCreateOrDelete');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/send/{phone}', 'Controller@send');
+Route::post('/send/{phone}', 'UserController@sendphone');
