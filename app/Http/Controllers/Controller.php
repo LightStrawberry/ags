@@ -10,4 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    protected $username = 'phone';  // 数据库中字段的名称
 }

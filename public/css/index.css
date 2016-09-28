@@ -1177,7 +1177,7 @@ body,html {
 	top:-.3125rem
 }
 .sale-pro .pro-pri .sale-cart:before {
-	content:"\d600";
+	/*content:"\d600";*/
 	font-size:1.25rem
 }
 .floor-list {
@@ -6944,7 +6944,7 @@ body,html {
 	text-align:center
 }
 .pos-list-con-list .pos-list-right-con .list-con-show .list-con-showlist div dl dd span:before {
-	content:"\d600";
+	/*content:"\d600";*/
 	font-size:1.25rem;
 	color:#d9493a
 }
@@ -9077,4 +9077,36 @@ body,html {
 .coll_body a.actived {
     color: #c61a00;
     position: relative;
+}
+
+.PinLikeButton.like em {
+    
+}
+
+.unlike-icon em {
+    background-image: url(/img/common.png);
+    background-repeat: no-repeat;
+    background-position: -233px -269px;
+    background-size: 384px 376px;
+    width: 16px;
+    height: 14px;
+    top: 8px;
+    display: inline-block;
+    outline: none;
+    position: relative;
+    vertical-align: middle;
+}
+
+.like-icon em {
+    background-image: url(/img/common.png);
+    background-repeat: no-repeat;
+    background-position: -250px -269px;
+    background-size: 384px 376px;
+    width: 16px;
+    height: 14px;
+    top: 8px;
+    display: inline-block;
+    outline: none;
+    position: relative;
+    vertical-align: middle;
 }

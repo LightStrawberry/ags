@@ -103,7 +103,11 @@
                                             <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
                                         </p>
                                         <a href="/fav/{{ $s->id }}">
-                                            <span class="gouwuche xeAppfonts"></span>
+                                            <?php if(empty($user)): ?>
+                                            <span class="unlikebtn-icon unlike-icon"><em></em></span>
+                                        <?php elseif($user->liked($s->id)): ?>
+                                            <span class="likebtn-icon like-icon"><em></em></span>
+                                            <?php endif ?>
                                         </a>
                                     </dd>
                                 </dl>

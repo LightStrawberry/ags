@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -36,11 +37,25 @@ class User extends Authenticatable
     }
     
     public static function likeShops() {
+        $user = Auth::user();
         // $favs = Favorite::where('user_id', 1)->get();
         // $shop = Shop::
         // var_dump(Favorite::where('user_id', 1)->get());
         // die();
-        return Favorite::where('user_id', 1)->get();
-        
+        return Favorite::where('user_id', $user->id)->get();
+    }
+    
+    public static function liked($id) {
+        if(Auth::user()) {
+            $user_id = Auth::user()->id;
+        } else {
+            $user_id = 0;
+        }
+        $a = Favorite::where('user_id', $user_id)->where('shop_id', $id)->get();
+        if($a->count() != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

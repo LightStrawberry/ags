@@ -77,19 +77,24 @@ class UserController extends Controller
     
     public function likeCreateOrDelete($id)
     {
-        $shop = Shop::find($id);
-        $data = ['shop_id'=> $shop->id, 'user_id'=> Auth::user()->id ];
-        $fav = Favorite::isUserLikedShop(Auth::user(), $shop);
-        if (Favorite::isUserLikedShop(Auth::user(), $shop)) {
-            $fav->delete();
-            //Auth::user()->likeShops()->detach($shop->id);
+        $user = Auth::user();
+        if($user) {
+            $shop = Shop::find($id);
+            $data = ['shop_id'=> $shop->id, 'user_id'=> Auth::user()->id ];
+            $fav = Favorite::isUserLikedShop(Auth::user(), $shop);
+            if (Favorite::isUserLikedShop(Auth::user(), $shop)) {
+                $fav->delete();
+                //Auth::user()->likeShops()->detach($shop->id);
+            } else {
+                Favorite::create($data);
+                //Auth::user()->likeShops()->attach($shop->id);
+                //Notification::notify('topic_like', Auth::user(), $topic->user, $topic);
+            }
+            //Flash::success(lang('Operation succeeded.'));
+            return redirect('/shop/'.$id);
         } else {
-            Favorite::create($data);
-            //Auth::user()->likeShops()->attach($shop->id);
-            //Notification::notify('topic_like', Auth::user(), $topic->user, $topic);
+            return redirect('/login');
         }
-        //Flash::success(lang('Operation succeeded.'));
-        return redirect('shop/'.$id);
     }
     
     function send($phone, $code) {
