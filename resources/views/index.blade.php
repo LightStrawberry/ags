@@ -102,11 +102,11 @@
                                             <i class="ng-binding">28.50元/斤</i>
                                             <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
                                         </p>
-                                        <a href="/fav/{{ $s->id }}">
+                                        <a>
                                             <?php if(empty($user)|(!$user->liked($s->id))): ?>
-                                            <span class="unlikebtn-icon unlike-icon"><em></em></span>
+                                            <span id="fav" class="unlike-icon" value="{{ $s->id }}" ><em></em></span>
                                             <?php else : ?>
-                                            <span class="likebtn-icon like-icon"><em></em></span>
+                                            <span id="fav" class="like-icon" value="{{ $s->id }}" ><em></em></span>
                                             <?php endif ?>
                                         </a>
                                     </dd>
@@ -114,7 +114,7 @@
                             </div>
                             @endforeach
                         </div>
-                        <div ng-if="productList.length > 0" ng-click="requestData()" class="load-more ng-binding ng-scope" ng-bind="loadText">没有更多数据了</div><!-- end ngIf: productList.length > 0 -->
+                        <div class="load-more">没有更多数据了</div>
                 </div>
             </div>
         </div>
@@ -124,20 +124,25 @@
 </div>
 
             {!!Html::script('js/jquery.js')!!}
-            {!!Html::script('js/index.js')!!}
             {!!Html::script('js/swiper.js')!!}
-             
-            <script> 
-            var mySwiper = new Swiper('.swiper-container', {})
-            </script>
+            {!!Html::script('js/index.js')!!}
             
-            <script type="text/javascript">
-            $(function(){
+            <script>
+            $(function() {
                 $(".coll_body").eq({{ $current_tag->type }}-1).show();
                 $(".Collapsing").click(function(){
                     $(this).toggleClass("current").siblings('.Collapsing').removeClass("current");//切换图标
                     $(this).children(".coll_body").slideToggle(500);
                     $(this).siblings(".Collapsing").children(".coll_body").slideUp(500);
+                });
+                
+                $("#fav").click(function() {
+                    $(this).toggleClass('like-icon');
+                    $(this).toggleClass('unlike-icon');
+                    var a = $(this).attr("value");
+                    //$(this).toggleClass("like-icon");
+                    $.get( "/fav/"+a, function() {
+                    });
                 });
             });
             </script>

@@ -50,7 +50,7 @@ class RegisterController extends Controller
     {
         if($data['vcode'] == Redis::get($data['phone'])) {
             return Validator::make($data, [
-                'name' => 'required|max:255',
+                //'name' => 'required|max:255',
                 //'email' => 'required|email|max:255|unique:users',
                 'vcode' => 'required',
                 'phone' => 'required|unique:users|regex:/^1[34578][0-9]{9}$/',
@@ -70,7 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            // 'name' => $data['name'],
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);

@@ -91,7 +91,7 @@ class UserController extends Controller
                 //Notification::notify('topic_like', Auth::user(), $topic->user, $topic);
             }
             //Flash::success(lang('Operation succeeded.'));
-            return redirect('/shop/'.$id);
+            // return json_encode(['success', 200]);
         } else {
             return redirect('/login');
         }

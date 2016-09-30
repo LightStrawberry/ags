@@ -32,7 +32,7 @@
                         <?php if(empty($user)):?>
 						<a>登录/注册</a>
                         <?php else: ?>
-                        <a>{{ $user->name }}</a>
+                        <a>{{ $user->phone }}</a>
                         <?php endif ?>
 					</div>
 				</div>
