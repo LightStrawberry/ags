@@ -57,16 +57,16 @@
             <div class="pos-list-right-con ">
                 <div class="header-select-fixed">
                     <ul>
-                        <li ng-click="changeSort(0)" ng-class="{'active': sortType == 0, 'up': sortType == 0 &amp;&amp; !desc}" class="active">
+                        <li class="active">
                             <span class="xeAppfonts">综合</span>
                         </li>
-                        <li ng-click="changeSort(1)" ng-class="{'active': sortType == 1, 'up': sortType == 1 &amp;&amp; !desc}">
+                        <li>
                             <span class="xeAppfonts">销量</span>
                         </li>
-                        <li ng-click="changeSort(2)" ng-class="{'active': sortType == 2, 'up': sortType == 2 &amp;&amp; !desc}">
+                        <li>
                             <span class="xeAppfonts">价格</span>
                         </li>
-                        <li ng-click="clickFilter()">
+                        <li>
                             <span class="xeAppfonts">筛选</span>
                         </li>
                     </ul>
@@ -103,9 +103,9 @@
                                             <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
                                         </p>
                                         <a href="/fav/{{ $s->id }}">
-                                            <?php if(empty($user)): ?>
+                                            <?php if(empty($user)|(!$user->liked($s->id))): ?>
                                             <span class="unlikebtn-icon unlike-icon"><em></em></span>
-                                        <?php elseif($user->liked($s->id)): ?>
+                                            <?php else : ?>
                                             <span class="likebtn-icon like-icon"><em></em></span>
                                             <?php endif ?>
                                         </a>
