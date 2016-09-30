@@ -77,8 +77,8 @@ class UserController extends Controller
     
     public function likeCreateOrDelete($id)
     {
-        $user = Auth::user();
-        if($user) {
+        //$user = Auth::user();
+        if(Auth::check()) {
             $shop = Shop::find($id);
             $data = ['shop_id'=> $shop->id, 'user_id'=> Auth::user()->id ];
             $fav = Favorite::isUserLikedShop(Auth::user(), $shop);

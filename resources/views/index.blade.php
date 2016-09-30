@@ -103,10 +103,10 @@
                                             <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
                                         </p>
                                         <a>
-                                            <?php if(empty($user)|(!$user->liked($s->id))): ?>
-                                            <span id="fav" class="unlike-icon" value="{{ $s->id }}" ><em></em></span>
-                                            <?php else : ?>
+                                            <?php if(isset($user)&&$user->liked($s->id)): ?>
                                             <span id="fav" class="like-icon" value="{{ $s->id }}" ><em></em></span>
+                                            <?php else : ?>
+                                            <span id="fav" class="unlike-icon" value="{{ $s->id }}" ><em></em></span>
                                             <?php endif ?>
                                         </a>
                                     </dd>

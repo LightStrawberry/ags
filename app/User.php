@@ -52,6 +52,7 @@ class User extends Authenticatable
             $user_id = 0;
         }
         $a = Favorite::where('user_id', $user_id)->where('shop_id', $id)->get();
+        
         if($a->count() != 0) {
             return true;
         } else {
