@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use Response;
 use App\User;
 use App\Favorite;
 use App\Shop;
@@ -98,7 +99,8 @@ class UserController extends Controller
             //Flash::success(lang('Operation succeeded.'));
             // return json_encode(['success', 200]);
         } else {
-            return redirect('/login');
+            return Response::json(['msg' => 'need login', 'code' => -1]);
+            //return json_encode(['msg' => 'need login', 'code' => -1]);
         }
     }
     

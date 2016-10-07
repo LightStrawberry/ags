@@ -121,13 +121,6 @@
 						个人信息
 					</div>
 				</a>
-
-				<a ui-sref="address.list({type: 'all'})" href="#/address/list">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-adr"></i>
-						收货地址管理
-					</div>
-				</a>
 			</div>
 
 			<div class="user-order mt20">
@@ -137,22 +130,6 @@
 						意见反馈
 					</div>
 				</a>
-
-				<a need-login="" action="goAfterService()" class="ng-isolate-scope">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-souhou"></i>
-						售后政策
-					</div>
-				</a>
-
-				<a href="tel://400-662-6366">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-shz"></i>
-						客服热线
-						<span>400-662-1111</span>
-					</div>
-				</a>
-				
 				<a href="">
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-help"></i>

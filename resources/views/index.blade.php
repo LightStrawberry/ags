@@ -86,9 +86,9 @@
                                     </div>
                                     </dt>
                                     <dd>
-                                        <p class="pro-name">
-                                        <xe-html html-text="product.productName" >{{ $s->shop_name }}</xe-html>
-                                        </p>
+                                        <a href="/shop/{{ $s->id }}">
+                                            <p class="pro-name">{{ $s->shop_name }}</p>
+                                        </a>
                                         <p class="price">
                                             <i>¥<em class="ng-binding">57.00</em></i>/千克
                                         </p>
@@ -135,7 +135,11 @@
                     $(this).toggleClass('unlike-icon');
                     var a = $(this).attr("value");
                     //$(this).toggleClass("like-icon");
-                    $.get( "/fav/"+a, function() {
+                    $.get( "/fav/"+a, function(data) {
+                        console.log(data['code']);
+                        if(data['code'] == -1) {
+                            window.location.href="/login";
+                        }
                     });
                 });
             });
