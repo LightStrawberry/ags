@@ -61,8 +61,13 @@ class UserController extends Controller
     
     function myFavs () {
         $user = Auth::user();
-        $favShops = self::likes($user);
-        return view('fav',compact('favShops'));
+        
+        if(Auth::check()) {
+            $favShops = self::likes($user);
+            return view('fav',compact('favShops'));
+        } else {
+            return redirect('/login');
+        }
     }
     
     public function likes($user)

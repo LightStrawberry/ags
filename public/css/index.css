@@ -5191,9 +5191,7 @@ body,html {
 	line-height:1rem;
 	padding:0 .25rem
 }
-.viewport {
-	padding-bottom:2.5rem
-}
+
 .fixbar {
 	position:fixed;
 	height:2.5rem;
