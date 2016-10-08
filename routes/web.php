@@ -16,7 +16,7 @@ Route::get('/shop/{id}','ShopController@shop_info');
 Route::get('/user','UserController@user_center');
 
 Route::get('/','ShopController@index');
-Route::get('/category','ShopController@index');
+Route::get('/category','ShopController@category');
 Route::get('/setpos','ShopController@setpos');
 Route::get('/setpos/{id}','ShopController@select_pos');
 Route::get('/admin','Admin\ShopController@index');

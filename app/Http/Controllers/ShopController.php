@@ -14,23 +14,31 @@ use Route;
 class ShopController extends Controller
 {
     function index() {
-        $pos = session('pos', null);
-        if($pos == null) {
-            return view('/select_pos');
-        } else {
-            $firstTag = Tag::all()->first()->id;
-            return redirect('/tag/'.$firstTag.'/');
-        }
+        return view('/select_pos');
     }
     
     function setpos() {
         return view('/select_pos');
+        // $pos = session('pos', null);
+        // if($pos == null) {
+        //     return view('/select_pos');
+        // } else {
+        //     $firstTag = Tag::all()->first()->id;
+        //     return redirect('/tag/'.$firstTag.'/');
+        // }
+    }
+    
+    function category() {
+        $firstTag = Tag::all()->first()->id;
+        return redirect('/tag/'.$firstTag.'/');
     }
     
     function select_pos($id) {
         //$request->session()->put('pos', $id);
         session(['pos' => $id]);
-        return redirect('/');
+        $firstTag = Tag::all()->first()->id;
+        return redirect('/tag/'.$firstTag.'/');
+        //return redirect('/');
     }
     
     function shop_by_tag($tag, $category=0) {
