@@ -39,56 +39,8 @@
 					</div>
 				</div>
 			</div>
-			
-
-			<div class="user-order mt20">
-				<a ui-sref="order.list({type: 'all'})" href="#/order/list?type=all">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-order"></i>
-						我的订单
-						<span>查看全部订单</span>
-					</div>
-				</a>
-				<div class="user-sta">
-					<div class="user-sta-co" ui-sref="order.list({type: 'unpay'})" href="#/order/list?type=unpay">
-						<div class="user-sta-coc">
-							<a>
-								<p class="xeAppfonts user-sta-icon01"></p>
-								<p class="user-sta-text">待付款</p>
-								<!-- ngIf: info.toBePayCount > 0 -->
-							</a>
-						</div>
-					</div>
-					<div class="user-sta-co" ui-sref="order.list({type: 'unrecived'})" href="#/order/list?type=unrecived">
-						<div class="user-sta-coc">
-							<a>
-								<p class="xeAppfonts user-sta-icon02"></p>
-								<p class="user-sta-text">待收货</p>
-								<!-- ngIf: info.toBeReceivedCount > 0 -->
-							</a>
-						</div>
-					</div>
-					<div class="user-sta-co" ui-sref="order.list({type: 'completed'})" href="#/order/list?type=completed">
-						<div class="user-sta-coc">
-							<a>
-								<p class="xeAppfonts user-sta-icon03"></p>
-								<p class="user-sta-text">已完成</p>
-								<!-- ngIf: info.completeCount > 0 -->
-							</a>
-						</div>
-					</div>
-
-					<div class="user-sta-co" ui-sref="order.list({type: 'canceled'})" href="#/order/list?type=canceled">
-						<div class="user-sta-coc">
-							<a>
-								<p class="xeAppfonts user-sta-icon04"></p>
-								<p class="user-sta-text">已取消</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
+		</div>
+	</div>
 
 			<div class="user-order mt20">
 				<a ui-sref="fav" href="/myFavs">
@@ -102,13 +54,6 @@
 					<div class="user-nav xeAppfonts arrow-right">
 						<i class="xeAppfonts nav-icon icon-pho"></i>
 						修改密码
-					</div>
-				</a>
-
-				<a ui-sref="award" href="#/award">
-					<div class="user-nav xeAppfonts arrow-right">
-						<i class="xeAppfonts nav-icon icon-jp"></i>
-						我的奖品
 					</div>
 				</a>
 				

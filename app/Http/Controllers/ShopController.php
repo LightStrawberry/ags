@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use App\Http\Requests;
 use App\Shop;
 use App\Tag;
@@ -13,22 +14,38 @@ use Route;
 class ShopController extends Controller
 {
     function index() {
-        $firstTag = Tag::all()->first()->id;
-        return redirect('/tag/'.$firstTag.'/');
+        $pos = session('pos', null);
+        if($pos == null) {
+            return view('/select_pos');
+        } else {
+            $firstTag = Tag::all()->first()->id;
+            return redirect('/tag/'.$firstTag.'/');
+        }
+    }
+    
+    function setpos() {
+        return view('/select_pos');
+    }
+    
+    function select_pos($id) {
+        //$request->session()->put('pos', $id);
+        session(['pos' => $id]);
+        return redirect('/');
     }
     
     function shop_by_tag($tag, $category=0) {
+        $pos = session('pos', null);
         if(Auth::user()) {
             $user = Auth::user();
         } else {
             $user = null;
         }
         if($category === 0) {
-            $shops = Shop::where('tag', $tag)->orderBy('updated_at', 'desc')->get();
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->orderBy('updated_at', 'desc')->get();
         } else {
-            $shops = Shop::where('tag', $tag)->where('category', $category)->orderBy('updated_at', 'desc')->get();
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->where('category', $category)->orderBy('updated_at', 'desc')->get();
         }
-        $tags = Tag::type_tag();    
+        $tags = Tag::type_tag();
         $current_tag = Tag::find($tag);
         // var_dump($current_tag->categories()->all());die();
         return view('index',compact('shops', 'tags', 'current_tag', 'user'));

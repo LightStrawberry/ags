@@ -6,6 +6,8 @@
     商家名字:<input type="text" name="shop_name" value="<?php if(isset($shop)) {echo $shop->shop_name;} ?>"><br>
     商家简介:<textarea name="shop_description" cols="50" rows="5"><?php if(isset($shop)) {echo $shop->shop_description;} ?></textarea><br>
     
+    商家地区:<input type="radio" name="shop_pos" value="1" <?php if(isset($shop->shop_pos) and $shop->shop_pos == 1) {echo 'checked="checked"';} ?>>华南
+            <input type="radio" name="shop_pos" value="2" <?php if(isset($shop->shop_pos) and $shop->shop_pos == 2) {echo 'checked="checked"';} ?>>白沙洲<br>
     
     产品分类:<input type="radio" name="type" value="1" <?php if(isset($shop->type) and $shop->type == 1) {echo 'checked="checked"';} ?>>生鲜肉类
             <input type="radio" name="type" value="2" <?php if(isset($shop->type) and $shop->type == 2) {echo 'checked="checked"';} ?>>海鲜水产

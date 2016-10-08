@@ -81,7 +81,7 @@
                                     <dt>
                                     <div class="pic-div">
                                         <a href="/shop/{{ $s->id }}">
-                                            <img src="{{ json_decode($s->shop_image_url)[0] }}">
+                                            <img src="{{ json_decode($s->shop_image_url)[0].'?imageView2/2/w/76/h/76/interlace/0/q/100' }}">
                                         </a>
                                     </div>
                                     </dt>
