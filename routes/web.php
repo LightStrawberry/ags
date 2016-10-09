@@ -13,6 +13,7 @@
 
 Route::get('/tag/{tag}/{category?}','ShopController@shop_by_tag');
 Route::get('/shop/{id}','ShopController@shop_info');
+Route::get('/item/{id}','ItemController@item_info');
 Route::get('/user','UserController@user_center');
 
 Route::get('/','ShopController@index');

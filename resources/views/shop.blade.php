@@ -34,7 +34,12 @@
 
 @foreach($shop->items as $i)
     @foreach(json_decode($i->item_image_url) as $img)
-    <li><div class="item-img"><a href=""><img class="img-view" src="{{ $img }}"></a></div></li>
+    <div class="item-list">
+        <li>
+            <div class="item-img"><a href="/item/{{ $i->id }}"><img class="img-view" src="{{ $img }}"></a></div>
+            <div class="item-name"><p>{{ $i->item_description }}</p></div>
+        </li>
+    </div>
     @endforeach
 @endforeach
 

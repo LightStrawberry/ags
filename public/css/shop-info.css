@@ -150,10 +150,27 @@ a,img,button,input,textarea {
 }
 
 .item-img {
+    width: 100%;
+    float: left;
+    padding: 2px;
+}
+
+.item-list {
     width: 50%;
     float: left;
 }
 
 .img-view {
     height: 200px;
+}
+
+.item-name {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.item-name p {
+    font-size: 12px;
+    font-family: sans-serif;
 }
