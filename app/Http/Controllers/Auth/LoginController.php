@@ -41,7 +41,8 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['phone' => $phone, 'password' => $password])) {
             // Authentication passed...
-            return redirect()->intended('dashboard');
+            return redirect('/');
+            //return redirect()->intended('dashboard');
         }
     }
 }

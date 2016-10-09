@@ -24,7 +24,7 @@ class ShopController extends Controller
     
     function index() {
         $user = Auth::user();
-        if(1) {
+        if(in_array($user->phone, config('app.super_user'))) {
             $shops = Shop::orderBy('updated_at', 'desc')->get();
             return view('admin/index',compact('shops'));
         } else {

@@ -28,7 +28,8 @@
 
                             <div class="col-md-6">
                                 <input id="vcode" type="vcode" class="form-control" name="vcode" value="" placeholder="请输验证码" required>
-                                <span><button id="btn" type="button">免费发送验证码</button></span>
+                                <span><button class="btn" id="send-btn" type="button">免费发送验证码</button></span>
+                                <span><button class="btn reset-code" id="resetCode" style="display:none;"><span id="second">60</span>秒后重发</button></span>
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
@@ -83,16 +84,36 @@
 {!!Html::script('js/jquery.js')!!}
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#btn').click(function(){
+        $('#send-btn').click(function(){
             var phone = $.trim($('#phone').val());
+            console.log(phone);
             var csrf = document.getElementsByName("_token")[0].value;
             $.ajax({
                 type: "POST",
                 url: "/send/"+phone,
                 data: "_token="+csrf,
                 success: function(msg){
+                    resetCode();
                 }
             });
         });
     });
+    
+    function resetCode(){
+    	$('#send-btn').hide();
+    	$('#second').html('60');
+    	$('#resetCode').show();
+    	var second = 60;
+    	var timer = null;
+    	timer = setInterval(function(){
+    		second -= 1;
+    		if(second >0 ){
+    			$('#second').html(second);
+    		}else{
+    			clearInterval(timer);
+    			$('#send-btn').show();
+    			$('#resetCode').hide();
+    		}
+    	},1000);
+    }
 </script>

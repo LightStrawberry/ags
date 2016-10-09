@@ -53,7 +53,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     登录
                                 </button>
-
+                                <a class="btn btn-link" href="{{ url('/register') }}">
+                                    注册
+                                </a>
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     忘记密码?
                                 </a>

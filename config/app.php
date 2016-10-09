@@ -229,5 +229,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
     ],
+    
+    'super_user' => [
+        '15623790518',
+    ],
 
 ];
