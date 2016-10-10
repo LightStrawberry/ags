@@ -71,14 +71,13 @@ class UserController extends Controller
         }
     }
     
-    public function likes($user)
-    {
+    public function likes($user) {
         $shop_id = $user->likeShops();
         $shops = [];
         foreach ($shop_id as $i) {
             $shops[] = Shop::find($i->shop_id);
         }
-        return $shops;
+        return array_filter($shops);
     }
     
     public function likeCreateOrDelete($id)
