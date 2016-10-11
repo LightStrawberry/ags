@@ -1,6 +1,5 @@
 <html lang="en" data-dpr="1" style="font-size: 25.875px;">
     <head>
-        <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
         <meta charset="UTF-8">
         <title>商品分类</title>
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -98,9 +97,9 @@
                                         </p>
                                         <a>
                                             <?php if(isset($user)&&$user->liked($s->id)): ?>
-                                            <span id="fav" class="like-icon" value="{{ $s->id }}" ><em></em></span>
+                                            <span class="fav like-icon" value="{{ $s->id }}" ><em></em></span>
                                             <?php else : ?>
-                                            <span id="fav" class="unlike-icon" value="{{ $s->id }}" ><em></em></span>
+                                            <span class="fav unlike-icon" value="{{ $s->id }}" ><em></em></span>
                                             <?php endif ?>
                                         </a>
                                     </dd>
@@ -108,7 +107,7 @@
                             </div>
                             @endforeach
                         </div>
-                        <div class="load-more">没有更多数据了</div>
+                        <div class="load-more">点击加载</div>
                 </div>
             </div>
         </div>
@@ -122,6 +121,8 @@
             {!!Html::script('js/index.js')!!}
             
             <script>
+            var currentPage = 1;
+            
             $(function() {
                 $(".coll_body").eq({{ $current_tag->type }}-1).show();
                 $(".Collapsing").click(function(){
@@ -130,7 +131,7 @@
                     $(this).siblings(".Collapsing").children(".coll_body").slideUp(500);
                 });
                 
-                $("#fav").click(function() {
+                $(".fav").click(function() {
                     $(this).toggleClass('like-icon');
                     $(this).toggleClass('unlike-icon');
                     var a = $(this).attr("value");
@@ -142,7 +143,54 @@
                         }
                     });
                 });
+                
+                $(".load-more").click(function() {
+                    currentPage++;
+                    var url = '{{ substr_replace(Request::url(), '/json', strlen(url('/')), 0) }}';
+                    $.ajax({
+                       type:'GET',
+                       url:'{{ substr_replace(Request::url(), '/json', strlen(url('/')), 0) }}',
+                       data:{page : currentPage},
+                       success:function(data){
+                           console.log(JSON.parse(data));
+                           var html = "";
+                           var list = JSON.parse(data);
+                           for (var i = 0, len = list.data.length ; i < len ; i++ ) {
+                               if(list.data[i].liked == false) {
+                                   var fav_html = mix('<span class="fav unlike-icon" value="${id}" ><em></em></span>', {id : list.data[i].id });
+                               } else {
+                                   var fav_html = mix('<span class="fav like-icon" value="${id}" ><em></em></span>', {id : list.data[i].id });
+                               }
+                               html += mix('<div class="ng-scope"><dl><dt><div class="pic-div"><a href="/shop/${shop_id}"><img src="${shop_img}"></a></div></dt><dd><a href="/shop/"${shop_id}""><p class="pro-name">${shop_name}</p></a><p class="price"><i>¥<em class="ng-binding">57.00</em></i>/千克</p><p class="pro-pri"><i class="ng-binding">28.50元/斤</i><i>销量:<em ng-bind="product.totalSale"class="ng-binding">0</em></i></p><a>${fav}</a></dd></dl></div>', {shop_name: list.data[i].shop_name, shop_id: list.data[i].id, shop_img: JSON.parse(list.data[i].shop_image_url)[0]+'?imageView2/2/w/76/h/76/interlace/0/q/100', fav: fav_html });
+                           }
+                           $(".list-con-showlist").append(html);
+                           $( document ).on( "click", ".fav", function() {
+                               $(this).toggleClass('like-icon');
+                               $(this).toggleClass('unlike-icon');
+                               var a = $(this).attr("value");
+                               console.log(a);
+                               //$(this).toggleClass("like-icon");
+                               $.get( "/fav/"+a, function(data) {
+                                   console.log(data['code']);
+                                   if(data['code'] == -1) {
+                                       window.location.href="/login";
+                                   }
+                               });
+                           })
+                           if(JSON.parse(data).next_page_url == null) {
+                               $(".load-more").text("没有更多数据了");
+                           }
+                       }
+                    });
+                });
             });
+            
+            function mix (str,group) {
+                str = str.replace(/\$\{([^{}]+)\}/gm,function (m,n) {
+                    return (group[n] != undefined) ? group[n] : '';
+                })
+                return str;
+            }
             </script>
     </body>
 </html>

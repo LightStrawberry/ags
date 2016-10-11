@@ -49,15 +49,41 @@ class ShopController extends Controller
             $user = null;
         }
         if($category === 0) {
-            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->orderBy('updated_at', 'desc')->get();
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->orderBy('updated_at', 'desc')->paginate(6);
         } else {
-            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->where('category', $category)->orderBy('updated_at', 'desc')->get();
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->where('category', $category)->orderBy('updated_at', 'desc')->paginate(6);
         }
         $tags = Tag::type_tag();
         $current_tag = Tag::find($tag);
-        // var_dump($current_tag->categories()->all());die();
         return view('index',compact('shops', 'tags', 'current_tag', 'user'));
     }
+    
+    function shop_by_tag_json($tag, $category=0) {
+        $pos = session('pos', null);
+        $user = Auth::user();
+        
+        if($category === 0) {
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->orderBy('updated_at', 'desc')->paginate(6);
+        } else {
+            $shops = Shop::where('shop_pos', $pos)->where('tag', $tag)->where('category', $category)->orderBy('updated_at', 'desc')->paginate(6);
+        }
+        
+        $json = json_decode($shops->toJson());
+        if(Auth::user()) {
+            $json->user_login = true;
+            foreach ($json->data as $d) {
+                $d->liked = $user->liked($d->id);
+            }
+        } else {
+            $json->user_login = false;
+            foreach ($json->data as $d) {
+                $d->liked = false;
+            }
+        }
+                
+        return json_encode($json);
+    }
+    
     
     function shop_info($id) {
         $shop = Shop::where('id', $id)->get()->first();
