@@ -1,0 +1,39 @@
+h3 {
+    text-align: center;
+}
+
+.fav-list {
+}
+
+.fav-item {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.fav-item dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: 6rem;
+}
+
+.fav-item dt {
+    float: left;
+}
+
+.fav-item dd {
+    position: relative;
+    margin-left: 6rem;
+    height: 6rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.fav-item .shop-name {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.fav-item img {
+    height: 6rem;
+    width: 6rem;
+}
