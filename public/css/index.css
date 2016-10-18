@@ -9081,6 +9081,10 @@ body,html {
     
 }
 
+.description {
+    width: 85%;
+}
+
 .unlike-icon em {
     background-image: url(/img/common.png);
     background-repeat: no-repeat;

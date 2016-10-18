@@ -6,6 +6,7 @@
         <option value="2">海鲜水产</option>
         <option value="3">熟食调理</option>
         <option value="4">粮油副食</option>
+        <option value="5">冻制品类</option>
     </select>
     <p>请输入小分类：</p><input type="text" name="tag_name">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>

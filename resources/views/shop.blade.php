@@ -19,7 +19,7 @@
 <div class="cp">
 	<div class="cp_left">
     	<div>店铺：{{ $shop->shop_name }}</div>
-        <div><h5>电话：{{ $shop->shop_name }}</h5></div>
+        <div><h5>电话：{{ $shop->shop_phone }}</h5></div>
     </div>
     <div class="cp_right"></div>
 </div>

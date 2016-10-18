@@ -88,12 +88,8 @@
                                         <a href="/shop/{{ $s->id }}">
                                             <p class="pro-name">{{ $s->shop_name }}</p>
                                         </a>
-                                        <p class="price">
-                                            <i>¥<em class="ng-binding">57.00</em></i>/千克
-                                        </p>
-                                        <p class="pro-pri">
-                                            <i class="ng-binding">28.50元/斤</i>
-                                            <i>销量:<em ng-bind="product.totalSale" class="ng-binding">0</em></i>
+                                        <p class="description">
+                                            <i><em class="ng-binding">{{ mb_substr($s->shop_description, 0, 20) }}</em></i>
                                         </p>
                                         <a>
                                             <?php if(isset($user)&&$user->liked($s->id)): ?>
@@ -161,7 +157,7 @@
                                } else {
                                    var fav_html = mix('<span class="fav like-icon" value="${id}" ><em></em></span>', {id : list.data[i].id });
                                }
-                               html += mix('<div class="ng-scope"><dl><dt><div class="pic-div"><a href="/shop/${shop_id}"><img src="${shop_img}"></a></div></dt><dd><a href="/shop/"${shop_id}""><p class="pro-name">${shop_name}</p></a><p class="price"><i>¥<em class="ng-binding">57.00</em></i>/千克</p><p class="pro-pri"><i class="ng-binding">28.50元/斤</i><i>销量:<em ng-bind="product.totalSale"class="ng-binding">0</em></i></p><a>${fav}</a></dd></dl></div>', {shop_name: list.data[i].shop_name, shop_id: list.data[i].id, shop_img: JSON.parse(list.data[i].shop_image_url)[0]+'?imageView2/2/w/76/h/76/interlace/0/q/100', fav: fav_html });
+                               html += mix('<div class="ng-scope"><dl><dt><div class="pic-div"><a href="/shop/${shop_id}"><img src="${shop_img}"></a></div></dt><dd><a href="/shop/"${shop_id}""><p class="pro-name">${shop_name}</p></a><p class="description"><i><em class="ng-binding">${shop_description}</em></i></p><a>${fav}</a></dd></dl></div>', {shop_name: list.data[i].shop_name, shop_id: list.data[i].id, shop_img: JSON.parse(list.data[i].shop_image_url)[0]+'?imageView2/2/w/76/h/76/interlace/0/q/100', fav: fav_html, shop_description: list.data[i].shop_description.substring(0,20) });
                            }
                            $(".list-con-showlist").append(html);
                            $( document ).on( "click", ".fav", function() {
